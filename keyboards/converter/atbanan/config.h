@@ -20,10 +20,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* matrix size */
 #define MATRIX_ROWS 16
 #define MATRIX_COLS 8
-
-/* key combination for command */
-#define IS_COMMAND() ( \
-    get_mods() == (MOD_BIT(KC_LALT) | MOD_BIT(KC_RALT)) || \
-    get_mods() == (MOD_BIT(KC_LGUI) | MOD_BIT(KC_RGUI)) || \
-    get_mods() == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
-)

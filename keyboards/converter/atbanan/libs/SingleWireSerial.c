@@ -36,7 +36,7 @@
 // Includes
 //
 #include <avr/interrupt.h>
-#include <avr/pgmspace.h>
+#include <stddef.h>
 #include "SingleWireSerial.h"
 #include <util/delay_basic.h>
 
