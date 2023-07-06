@@ -1,8 +1,7 @@
 {
-    "name":"at banan",
-    "vendorId":"0xFEED",
-    "productId":"0x3333",
-    "lighting":"none",
+    "vendorId": "0xFEED",
+    "productId": "0x3333",
+    "lighting": "none",
     "matrix":{
         "rows":16,
         "cols":8

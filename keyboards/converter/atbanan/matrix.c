@@ -41,6 +41,8 @@ uint8_t sun_led = 0x0E;
 #define ROW(code)      ((code>>3)&0xF)
 #define COL(code)      (code&0x07)
 
+static bool is_modified = false;
+
 void ss_handle_interrupt(void) {
     // donothing
 }
@@ -99,8 +101,8 @@ void led_set(uint8_t usb_led)
 
 void matrix_init(void)
 {
-    debug_enable = true;
-    debug_matrix = true;
+    debug_enable = false;
+    debug_matrix = false;
 
     _delay_ms(200);
 
@@ -123,6 +125,8 @@ void matrix_init(void)
 uint8_t matrix_scan(void)
 {
     uint8_t code;
+    code = 0;
+
     if (ss_available()) {
         code = ss_read();
         uprintf("received 0x%02X\n", code);
@@ -131,33 +135,6 @@ uint8_t matrix_scan(void)
     } else {
         code = 0;
     }
-
-    /*switch (code) {
-        case 0xFF:  // reset success: FF 04
-            print("reset: ");
-            _delay_ms(500);
-            code = ss_read();
-            xprintf("%02X\n", code);
-            if (code == 0x04) {
-                // LED status
-                led_set(host_keyboard_leds());
-            }
-            return 0;
-        case 0xFE:  // layout: FE <layout>
-            print("layout: ");
-            _delay_ms(500);
-            xprintf("%02X\n", ss_read());
-            return 0;
-        case 0x7E:  // reset fail: 7E 01
-            print("reset fail: ");
-            _delay_ms(500);
-            xprintf("%02X\n", ss_read());
-            return 0;
-        case 0x7F:
-            // all keys up
-            for (uint8_t i=0; i < MATRIX_ROWS; i++) matrix[i] = 0x00;
-            return 0;
-    }*/
 
     if (code&0x80) {
         // break code
@@ -173,6 +150,11 @@ uint8_t matrix_scan(void)
 
     matrix_scan_quantum();
     return code;
+}
+
+bool matrix_is_modified(void)
+{
+    return is_modified;
 }
 
 inline
@@ -201,4 +183,13 @@ void matrix_print(void)
         print_bin_reverse8(matrix_get_row(row));
         print("\n");
     }
+}
+
+uint8_t matrix_key_count(void)
+{
+    uint8_t count = 0;
+    for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
+        count += bitpop(matrix[i]);
+    }
+    return count;
 }

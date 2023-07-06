@@ -4,7 +4,6 @@
 bool sun_bell = false;
 bool sun_click = false;
 
-
 bool command_extra(uint8_t code)
 {
     switch (code) {
