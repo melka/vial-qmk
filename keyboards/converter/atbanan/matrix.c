@@ -90,7 +90,7 @@ void matrix_init(void)
     debug_enable = false;
     debug_matrix = false;
 
-    _delay_ms(200);
+    _delay_ms(1000);
 
     xprintf("Starting\n");
 
