@@ -15,7 +15,7 @@ Using [USART](https://github.com/AndersKaloer/ATmega-UART/tree/master) and [ring
 This code & keymap has only been tested working for an ISO Weytec MK06 with the ADD04 module on the left and and ADD09 module on the right, with a Weytec firmware version of 1.25. 
 If your keyboard has different pads and or a different firmware version, you might have to patch the KCT file and rewrite the keymaps and vial json according to your needs.
 
-## Background
+## Background
 
 The Weytec MK06 originally uses an external converter box that is unobtainium. [MMcM on Deskthority did the hard work of reverse engineering](https://deskthority.net/viewtopic.php?f=7&t=27319) the protocol and pinout for that keyboard, this is the code ported to an Arduino Pro Micro and using vial. All the relevant information about connector, pinout, port names, etc... are from the above link.
 
@@ -72,7 +72,7 @@ I've put all the WS as using the QMK149 keycode table, and outputting on DLink p
 
 ```make converter/wey_mk06/atmega32u4:vial```
 
-## References
+## References
 
 https://deskthority.net/viewtopic.php?f=7&t=27319 
 https://github.com/MMcM/qmk_firmware/tree/mmcm/keyboards/converter/wey_mk06
